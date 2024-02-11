@@ -8,9 +8,9 @@ vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappin
     { 
       'navarasu/onedark.nvim', 
       name = 'onedark',
-      init = function()
-        vim.cmd('colorscheme onedark')
-      end,
+      -- init = function()
+      --   vim.cmd('colorscheme onedark')
+      -- end,
     },
     { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
  
