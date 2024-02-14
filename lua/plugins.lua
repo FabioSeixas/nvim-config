@@ -69,6 +69,7 @@ return require("lazy").setup({
           "lua_ls",
           "rust_analyzer",
           "tsserver",
+          "jsonls",
         },
         handlers = {
           function(server_name) -- default handler (optional)
@@ -111,9 +112,9 @@ return require("lazy").setup({
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
-          { name = "nvim_lsp_signature_help" },
-          { name = "nvim_lua" },
-          { name = "luasnip" },
+          -- { name = "nvim_lsp_signature_help" },
+          -- { name = "nvim_lua" },
+          -- { name = "luasnip" },
           { name = "path" },
         }, {
           { name = "buffer", keyword_length = 3 },
