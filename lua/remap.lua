@@ -2,14 +2,12 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>")
 
-local M = {}
+vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>")
+vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>")
+vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>")
+vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>")
 
-M.general = {
-  ["<C-h>"] = { "<cmd> TmuxNavigateLeft<CR>", "window left" },
-  ["<C-j>"] = { "<cmd> TmuxNavigateRight<CR>", "window right" },
-  ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up" },
-  ["<C-l>"] = { "<cmd> TmuxNavigateDown<CR>", "window down" },
-}
+local M = {}
 
 local generic_opts_any = { noremap = true, silent = true }
 
@@ -56,10 +54,10 @@ local defaults = {
   },
   normal_mode = {
     -- Better window movement
-    ["<C-h>"] = "<C-w>h",
-    ["<C-j>"] = "<C-w>j",
-    ["<C-k>"] = "<C-w>k",
-    ["<C-l>"] = "<C-w>l",
+    -- ["<C-h>"] = "<C-w>h",
+    -- ["<C-j>"] = "<C-w>j",
+    -- ["<C-k>"] = "<C-w>k",
+    -- ["<C-l>"] = "<C-w>l",
     -- ["<C-h>"] = { "<cmd> TmuxNavigateLeft<CR>", "window left"},
     -- ["<C-j>"] = { "<cmd> TmuxNavigateRight<CR>", "window right"},
     -- ["<C-k>"] = { "<cmd> TmuxNavigateUp<CR>", "window up"},
