@@ -25,7 +25,8 @@ require 'nvim-treesitter.configs'.setup {
     "vimdoc",
     "query",
     "bash",
-    "json"
+    "json",
+    "go"
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
