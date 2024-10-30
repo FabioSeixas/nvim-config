@@ -13,10 +13,15 @@ return require("lazy").setup({
     --   vim.cmd('colorscheme onedark')
     -- end,
   },
-
+  {
+    'stevearc/conform.nvim',
+    commit = "4e97712607bfdcadc097823339599e5bf05f97f9",
+    lazy = true,
+    cmd = "ConformInfo",
+  },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
 
-  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
+  { 'nvim-treesitter/nvim-treesitter',          build = ':TSUpdate' },
 
   { 'christoomey/vim-tmux-navigator' },
 
@@ -70,6 +75,7 @@ return require("lazy").setup({
           "rust_analyzer",
           "tsserver",
           "jsonls",
+          "pyright"
         },
         handlers = {
           function(server_name) -- default handler (optional)
@@ -121,7 +127,19 @@ return require("lazy").setup({
         }),
       })
     end
+  },
+  {
+    "ray-x/go.nvim",
+    dependencies = {  -- optional packages
+      "ray-x/guihua.lua",
+      "neovim/nvim-lspconfig",
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("go").setup()
+    end,
+    event = {"CmdlineEnter"},
+    ft = {"go", 'gomod'},
+    build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
   }
-
-
 })

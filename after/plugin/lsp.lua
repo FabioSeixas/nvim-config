@@ -7,6 +7,8 @@
 -- end
 --
 
+local conform = require("conform")
+
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
@@ -15,9 +17,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- these will be buffer-local keybindings
     -- because they only work if you have an active language server
 
-    -- if client.name == 'tsserver' then
-    -- 	client.server_capabilities.documentFormattingProvider = false
-    -- end
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    if client.name == 'tsserver' then
+    	client.server_capabilities.documentFormattingProvider = false
+    end
 
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end, opts)
@@ -26,8 +29,17 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set("n", "<leader>lg", function() vim.diagnostic.open_float({ source = true }) end, opts)
     vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "<leader>lr", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = true }) end, opts)
+    vim.keymap.set("n", "<leader>lf", function() conform.format({ bufnr = event.buf, async = true })  end, opts)
   end
+})
+
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimports()
+  end,
+  group = format_sync_grp,
 })
 
 vim.diagnostic.config({
