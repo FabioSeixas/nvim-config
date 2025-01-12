@@ -9,9 +9,6 @@ return require("lazy").setup({
   {
     'navarasu/onedark.nvim',
     name = 'onedark',
-    -- init = function()
-    --   vim.cmd('colorscheme onedark')
-    -- end,
   },
   {
     'stevearc/conform.nvim',
@@ -19,7 +16,7 @@ return require("lazy").setup({
     lazy = true,
     cmd = "ConformInfo",
   },
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
   { 'nvim-treesitter/nvim-treesitter',          build = ':TSUpdate' },
 
@@ -73,7 +70,6 @@ return require("lazy").setup({
         ensure_installed = {
           "lua_ls",
           "rust_analyzer",
-          "tsserver",
           "jsonls",
           "pyright"
         },
@@ -140,6 +136,5 @@ return require("lazy").setup({
     end,
     event = {"CmdlineEnter"},
     ft = {"go", 'gomod'},
-    build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
   }
 })
