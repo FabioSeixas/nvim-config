@@ -209,11 +209,6 @@ return require("lazy").setup({
   },
 },
 {
-  'plasticboy/vim-markdown',
-  branch = 'master',
-  require = {'godlygeek/tabular'},
-},
-{
    "OXY2DEV/markview.nvim",
     lazy = false,
 }
