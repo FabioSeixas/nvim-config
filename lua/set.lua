@@ -5,9 +5,14 @@ vim.opt.expandtab = false
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
--- vim.opt.tabstop = 4
+-- Normal
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
+
+-- Godot
+-- vim.opt.softtabstop = 8
+-- vim.opt.shiftwidth = 8
+
 vim.opt.ignorecase = true
 
 vim.opt.smartindent = true
@@ -30,3 +35,6 @@ vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 50
 
+-- Markdown
+vim.opt.conceallevel=2
+vim.opt.foldenable=false

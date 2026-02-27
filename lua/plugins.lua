@@ -22,6 +22,59 @@ return require("lazy").setup({
 
   { 'christoomey/vim-tmux-navigator' },
 
+  -- {
+  --   'xiyaowong/transparent.nvim',
+  -- },
+  {
+    'mfussenegger/nvim-dap',
+    lazy = false,
+    -- Copied from LazyVim/lua/lazyvim/plugins/extras/dap/core.lua and
+    -- modified.
+    keys = {
+      {
+        "<leader>db",
+        function() require("dap").toggle_breakpoint() end,
+        desc = "Toggle Breakpoint"
+      },
+
+      {
+        "<leader>dc",
+        function() require("dap").continue() end,
+        desc = "Continue"
+      },
+
+      {
+        "<leader>dC",
+        function() require("dap").run_to_cursor() end,
+        desc = "Run to Cursor"
+      },
+
+      {
+        "<leader>dT",
+        function() require("dap").terminate() end,
+        desc = "Terminate"
+      },
+    },
+  },
+  { "mxsdev/nvim-dap-vscode-js", dependencies = {"mfussenegger/nvim-dap"} },
+  {
+    "jay-babu/mason-nvim-dap.nvim",
+    enabled = false,
+    -- opts = {
+    --   -- This line is essential to making automatic installation work
+    --   handlers = {},
+    --   automatic_installation = {
+    --     -- These will be configured by separate plugins.
+    --     exclude = {
+    --       "python",
+    --     },
+    --   },
+    -- },
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "williamboman/mason.nvim",
+    },
+  },
   {
     'windwp/nvim-autopairs',
     init = function() require("nvim-autopairs").setup {} end
@@ -136,5 +189,32 @@ return require("lazy").setup({
     end,
     event = {"CmdlineEnter"},
     ft = {"go", 'gomod'},
-  }
+  },
+  {
+  "obsidian-nvim/obsidian.nvim",
+  version = "*", -- use latest release, remove to use latest commit
+  ft = "markdown",
+  opts = {
+    legacy_commands = false, -- this will be removed in the next major release
+    workspaces = {
+      {
+        name = "personal",
+        path = "~/vaults/personal",
+      },
+      {
+        name = "work",
+        path = "~/vaults/work",
+      },
+    },
+  },
+},
+{
+  'plasticboy/vim-markdown',
+  branch = 'master',
+  require = {'godlygeek/tabular'},
+},
+{
+   "OXY2DEV/markview.nvim",
+    lazy = false,
+}
 })
