@@ -191,25 +191,39 @@ return require("lazy").setup({
     ft = {"go", 'gomod'},
   },
   {
-  "obsidian-nvim/obsidian.nvim",
-  version = "*", -- use latest release, remove to use latest commit
-  ft = "markdown",
-  opts = {
-    legacy_commands = false, -- this will be removed in the next major release
-    workspaces = {
-      {
-        name = "personal",
-        path = "~/vaults/personal",
-      },
-      {
-        name = "work",
-        path = "~/vaults/work",
+    "obsidian-nvim/obsidian.nvim",
+    version = "*", -- use latest release, remove to use latest commit
+    ft = "markdown",
+    opts = {
+      legacy_commands = false, -- this will be removed in the next major release
+      workspaces = {
+        {
+          name = "personal",
+          path = "~/vaults/personal",
+        },
+        {
+          name = "no-vault",
+          path = function()
+            -- alternatively use the CWD:
+            -- return assert(vim.fn.getcwd())
+            return assert(vim.fs.dirname(vim.api.nvim_buf_get_name(0)))
+          end,
+          overrides = {
+            notes_subdir = vim.NIL,  -- have to use 'vim.NIL' instead of 'nil'
+            new_notes_location = "current_dir",
+            templates = {
+              folder = vim.NIL,
+            },
+            frontmatter = {
+              enabled = false
+            }
+          },
+        },
       },
     },
   },
-},
-{
-   "OXY2DEV/markview.nvim",
-    lazy = false,
-}
+  {
+     "OXY2DEV/markview.nvim",
+      lazy = false,
+  }
 })
