@@ -196,6 +196,12 @@ return require("lazy").setup({
     ft = "markdown",
     opts = {
       legacy_commands = false, -- this will be removed in the next major release
+      daily_notes = {
+        enabled = true,
+        folder = "daily",
+        date_format = "YYYY-MM-DD",
+        default_tags = { "journal", "daily" },
+      },
       workspaces = {
         {
           name = "personal",
