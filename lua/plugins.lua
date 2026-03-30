@@ -192,6 +192,7 @@ return require("lazy").setup({
   },
   {
     "obsidian-nvim/obsidian.nvim",
+    enabled = false,
     version = "*", -- use latest release, remove to use latest commit
     ft = "markdown",
     opts = {
