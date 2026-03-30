@@ -192,7 +192,7 @@ return require("lazy").setup({
   },
   {
     "obsidian-nvim/obsidian.nvim",
-    enabled = false,
+    enabled = true,
     version = "*", -- use latest release, remove to use latest commit
     ft = "markdown",
     opts = {
@@ -202,6 +202,10 @@ return require("lazy").setup({
         folder = "daily",
         date_format = "YYYY-MM-DD",
         default_tags = { "journal", "daily" },
+      },
+      completion = {
+          -- Set to true to enable completion.
+        nvim_cmp = false,
       },
       workspaces = {
         {
